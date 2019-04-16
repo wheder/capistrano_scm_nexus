@@ -26,7 +26,7 @@ class Capistrano::Nexus < Capistrano::SCM
     def check
       begin
         uri = URI(artifact_url)
-        res = Net::HTTP.new(uri.host).request_head(uri.path)
+        res = Net::HTTP.new(uri.host, uri.port).request_head(uri.path)
         if res.code.to_i == 200
           true
         else
